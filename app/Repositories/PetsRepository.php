@@ -32,4 +32,8 @@ class PetsRepository extends AppRepository{
     public function getByName($name){
         return $this->model::query()->whereLike('nome', $name)->get();
     }
+
+    public function getData($request){
+        return $this->model->paginate($request->input('limit', 10));
+    }
 }

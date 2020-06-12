@@ -4,82 +4,49 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\AtendimentoRepository;
 
-class AtendimentoController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class AtendimentoController extends Controller{
+
+    protected $repository;
+    public function __construct(AtendimentoRepository $repository){
+        $this->repository = $repository;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function index(Request $request){
+        $items = $this->repository->get($request);
+        return response()->json(['items' => $items],200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(AtendimentoRequest $request){
+        try {
+            $item = $this->repository->store($request);
+            return response()->json(['item' => "Registro cadastrado com sucesso"],200);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatus());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        try {
+            if(!intval($id)){
+                $item = $this->repository->getByName($id);
+            }else{
+                $item = $this->repository->getData($id);
+            }
+            
+            return response()->json(['item' => $item],200);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatus());
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        try {
+            $this->repository->delete($id);
+            return response()->json(['item' => "Registro deletado com sucesso"], 200);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatus());
+        }
     }
 }

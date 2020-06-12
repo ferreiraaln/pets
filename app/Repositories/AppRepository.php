@@ -12,11 +12,11 @@ Abstract class AppRepository{
     }
  
     public function get(){
-        return $this->model->get();
+        return $this->model->paginate();
     }
 
     public function paginate($request){
-        return $this->model->paginate($request->input('limit', 10));
+        return $this->getData($request);
     }
  
     public function store($request){
@@ -36,5 +36,6 @@ Abstract class AppRepository{
         return $this->model->destroy($id);
     }
 
+    abstract public function getData($request);
     abstract public function setData($request);
 }
