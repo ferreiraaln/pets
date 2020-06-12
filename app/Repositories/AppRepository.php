@@ -19,9 +19,22 @@ Abstract class AppRepository{
         return $this->model->paginate($request->input('limit', 10));
     }
  
-    abstract protected function store($request);
+    public function store($request){
+        $data = $this->setData($request);
+        $item = $this->model;
+        foreach ($data as $value) {
+            $item::create($value); 
+        }
+        return $item;
+    }
 
-    abstract public function show($id);
+    public function show($id){
+        return $this->model->findOrFail($id);
+    }
 
-    abstract public function delete($id);
+    public function delete($id){
+        return $this->model->destroy($id);
+    }
+
+    abstract public function setData($request);
 }

@@ -5,6 +5,8 @@ namespace App\Repositories;
 use Illuminate\Http\Request;
 use App\Repositories\AppRepository;
 use App\Models\Pets;
+use App\Models\Especie as Especie;
+use Illuminate\Support\Facades\DB;
 
 class PetsRepository extends AppRepository{
     
@@ -14,23 +16,20 @@ class PetsRepository extends AppRepository{
         $this->model = $model;
     }
 
-    public function store($request){
-        $data = [
-            'nome' => $request->input('nome'),
-            'id_especie' => $request->input('id_especie')
-        ];
-        //$data = $this->setDataPayload($request);
-        $item = $this->model;
-        $item->fill($data);
-        $item->save();
-         return $item;
+    public function setData($request){
+        $data = $request->all();
+        $result = array();
+
+        foreach ($data as $value) {
+            $item = DB::table('especies')->where('tipo', $value['especie'])->first();
+            $value['id_especie'] = $item->id_especie;
+            array_push($result, $value);
+        }
+
+        return $result;
     }
 
-    public function show($id){
-        return $this->model->findOrFail($id);
-    }
-
-    public function delete($id){
-        return $this->model->destroy($id);
+    public function getByName($name){
+        return $this->model::query()->whereLike('nome', $name)->get();
     }
 }

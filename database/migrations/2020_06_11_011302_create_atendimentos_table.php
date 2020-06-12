@@ -15,10 +15,10 @@ class CreateAtendimentosTable extends Migration
     {
         Schema::create('atendimentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('descricao');
+            $table->longText('descricao');
             $table->dateTime('data_atendimento');
             $table->integer('id_pet')->unsigned();
-            $table->foreign('id_pet')->references('id_pets')->on('pets');
+            $table->foreign('id_pet')->references('id_pets')->on('pets')->onDelete('cascade');
             $table->timestamps();
         });
     }
