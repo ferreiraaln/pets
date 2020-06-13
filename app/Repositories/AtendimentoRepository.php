@@ -19,11 +19,14 @@ class AtendimentoRepository extends AppRepository{
 
     public function setData($request){
         $data = $request->all();
-
-        dd($data);
         $result = array();
+        $aux = array();
 
         foreach ($data as $value) {
+            $aux['descricao'] = $value['descricao'];
+            $aux['id_pet'] = $value['id_pet'];
+            $aux['data_atendimento'] = $value['data_atendimento'];
+            array_push($result,$aux);
         }
 
         return $result;

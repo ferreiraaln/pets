@@ -18,31 +18,26 @@ class AtendimentoRequest extends ValidationRequest{
 
     public function validation($request){
         $data = $request->all();
-        // foreach ($data as $value) {
-        //     if(!isset($value['nome'])){
-        //         throw new HttpResponseException(
-        //             response()->json(['errors' => "Campo nome deve ser enviado"])
-        //         );
-        //     }
+        foreach ($data as $value) {
 
-        //     if(strlen($value['nome']) < 2 ){
-        //         throw new HttpResponseException(
-        //             response()->json(['errors' => "O nome deve ter no minimo dois caracteres"])
-        //         );
-        //     }
+            if(!isset($value['id_pet'])){
+                throw new HttpResponseException(
+                    response()->json(['errors' => "Campo id_pet deve ser enviado"])
+                );
+            }
 
-        //     if(!isset($value['especie'])){
-        //         throw new HttpResponseException(
-        //             response()->json(['errors' => "Campo especie deve ser enviado"])
-        //         );
-        //     }
+            $pet = DB::table('pets')->where('id_pets', $value['id_pet'])->first();
+            if(!isset($pet)){
+                throw new HttpResponseException(
+                    response()->json(['errors' => "O Pet enviado nao existe." ])
+                );
+            }
 
-        //     $especie = DB::table('especies')->where('tipo', $value['especie'])->first();
-        //     if(!isset($especie)){
-        //         throw new HttpResponseException(
-        //             response()->json(['errors' => "A especie '".$value['especie']. "' nao existe. Envie C (cao) ou G (gato)" ])
-        //         );
-        //     }
-        // }
+            if(!isset($value['data_atendimento'])){
+                throw new HttpResponseException(
+                    response()->json(['errors' => "Campo data_atendimento deve ser enviado"])
+                );
+            }
+        }
     }
 }

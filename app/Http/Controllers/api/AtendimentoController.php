@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\AtendimentoRepository;
+use App\Http\Requests\AtendimentoRequest;
 
 class AtendimentoController extends Controller{
 
@@ -43,8 +44,12 @@ class AtendimentoController extends Controller{
 
     public function destroy($id){
         try {
-            $this->repository->delete($id);
-            return response()->json(['item' => "Registro deletado com sucesso"], 200);
+            $item = $this->repository->delete($id);
+            $msg = 'Registro deletado com sucesso!';
+            if($item == 0){
+                $msg = 'Registro nao encontrado!'; 
+            }
+            return response()->json(['item' => $msg], 200);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
