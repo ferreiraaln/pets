@@ -16,7 +16,7 @@ Popula as tabelas com dados de exemplo
 ### Pets
 
 ##### GET
-busca todos pets (Limite de 10 por Página)
+busca todos pets (Limite de 10 por página)
 - [{BASE_URL}/api/pets/]()
 
 Busca por página específica
@@ -25,7 +25,7 @@ Busca por página específica
 busca pet por id
 - [{BASE_URL}/api/pets/{ID_PET}]()
 
-busca pets pelo nome ou ocorrencia do nome (Podendo ser o nome completo ou as letras iniciais do nome)
+busca pets pelo nome ou ocorrência do nome (Podendo ser o nome completo ou suas letras iniciais)
 - [{BASE_URL}/api/pets/{NOME_PET}]()
 
 ##### POST
@@ -43,7 +43,7 @@ Remove pet
 ### Atendimento
 
 ##### GET
-busca todos Atendimentos (Sem formatação e limite de 15 por Página)
+busca todos os Atendimentos (Sem formatação e limite de 15 por página)
 - [{BASE_URL}/api/atendimento/]()
 
 busca por página específica
@@ -52,7 +52,7 @@ busca por página específica
 busca atendimento(s) pelo id do Pet
 - [{BASE_URL}/api/atendimento/{ID_PET}]()
 
-busca atendimento pelo nome do pet ou ocorrencia do nome do pet (Podendo ser o nome completo ou as letras iniciais do nome)
+busca atendimento pelo nome do pet ou ocorrência do nome do pet (Podendo ser o nome completo ou suas inicias)
 - [{BASE_URL}/api/atendimento/{NOME_PET}]()
 
 ##### POST
