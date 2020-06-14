@@ -19,7 +19,7 @@ Popula as tabelas com dados de exemplo
 busca todos pets (Limite de 10 por Página)
 - [{BASE_URL}/api/pets/]()
 
-Busca por Pagina específica
+Busca por página específica
 - [{BASE_URL}/api/pets/?page=2]()
 
 busca pet por id
