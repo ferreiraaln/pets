@@ -6,8 +6,8 @@ Após baixar o projeto, configurar conexão com o banco de dados e baixar as dep
 Cria as tabelas do bando de dados
 - [php artisan migrate]()
 
-Popula as tabelas com dados de exemplo
-- [php artisan db:seed (opcional)]()
+Popula as tabelas com dados de exemplo (opcional)
+- [php artisan db:seed ]()
 
 
 
