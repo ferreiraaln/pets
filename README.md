@@ -3,13 +3,13 @@
 ## Comandos para os testes
 Após baixar o projeto, configurar conexão com o banco de dados e baixar as dependências com composer:
 
-php artisan migrate
 Cria as tabelas do bando de dados
-- [{BASE_URL}/api/pets/]()
+- [php artisan migrate]()
 
-php artisan db:seed (opcional)
 Popula as tabelas com dados de exemplo
-- [{BASE_URL}/api/pets/]()
+- [php artisan db:seed (opcional)]()
+
+
 
 ## Endpoints
 
