@@ -20,7 +20,7 @@ busca todos pets (Limite de 10 por Página)
 - [{BASE_URL}/api/pets/]()
 
 Busca por página específica
-- [{BASE_URL}/api/pets/?page=2]()
+- [{BASE_URL}/api/pets?page=2]()
 
 busca pet por id
 - [{BASE_URL}/api/pets/{ID_PET}]()
