@@ -39,7 +39,7 @@ busca atendimento pelo nome do pet ou ocorrencia do nome do pet (Podendo ser o n
 - [{BASE_URL}/api/atendimento/{NOME_PET}]()
 
 ##### POST
-Cadastra um novo pet
+Cadastra um novo Atendimento
 - [{BASE_URL}/api/atendimento/]()
 
 ###### BODY
