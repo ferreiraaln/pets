@@ -44,6 +44,11 @@ class AtendimentoRepository extends AppRepository{
 
     public function getData($id){
         $pet = Pets::where('id_pets',$id)->first();
+
+        if(is_null($pet)){
+            return "pet nao encontrado";
+        }
+
         if(empty($this->getDados($pet))){
             return "O pet {$pet->nome} ainda nao possui atendimento";
         }
